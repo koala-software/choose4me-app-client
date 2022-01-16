@@ -3,41 +3,35 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Pressable } from "react-native";
 import RoundBtn from "../components/RoundBtn";
 import JoinWIFI from "./JoinWIFI";
-import Animated from "react-native-reanimated";
-import {
-  BottomSheetModal,
-  BottomSheetModalProvider,
-} from "@gorhom/bottom-sheet";
+import BottomSheet from "@gorhom/bottom-sheet";
 
 const StartWIFI = () => {
-  const joinSheetRef = useRef<BottomSheetModal>(null);
+  const joinSheetRef = useRef<BottomSheet>(null);
   const snapPoints = useMemo(() => ["80%"], []);
 
-  const handlePresentModalPress = useCallback(() => {
-    joinSheetRef.current?.present();
+  const handlePresentPress = useCallback(() => {
+    joinSheetRef.current?.expand();
   }, []);
   const handleSheetChanges = useCallback((index: number) => {
     console.log("handleSheetChanges", index);
   }, []);
 
-  const handleClosePress = () => joinSheetRef.current?.dismiss();
+  joinSheetRef.current?.close();
 
   return (
-    <BottomSheetModalProvider>
-      <View style={styles.container}>
-        <RoundBtn text={"HOST"} onPress={handleClosePress} />
-        <RoundBtn text={"JOIN"} outline onPress={handlePresentModalPress} />
-      </View>
-      <BottomSheetModal
+    <View style={styles.container}>
+      <RoundBtn text={"HOST"} />
+      <RoundBtn text={"JOIN"} outline onPress={handlePresentPress} />
+      <BottomSheet
         ref={joinSheetRef}
-        index={0}
+        index={-1}
         enablePanDownToClose
         snapPoints={snapPoints}
         onChange={handleSheetChanges}
       >
         <JoinWIFI />
-      </BottomSheetModal>
-    </BottomSheetModalProvider>
+      </BottomSheet>
+    </View>
   );
 };
 
