@@ -4,8 +4,8 @@ import { StyleSheet, Text, View, Pressable  } from 'react-native';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Pressable style={styles.hostBtn}  onPress={()=> {}}><Text>HOST</Text></Pressable>
-      <Pressable style={styles.joinBtn}  onPress={()=> {}}><Text>JOIN</Text></Pressable>
+      <Pressable style={styles.hostBtn}  onPress={()=> {}}><Text style={styles.btnText}>HOST</Text></Pressable>
+      <Pressable style={styles.joinBtn}  onPress={()=> {}}><Text style={styles.btnText}>JOIN</Text></Pressable>
       <StatusBar style="auto" />
     </View>
   );
@@ -19,21 +19,28 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   hostBtn:{
-      height:100,
-      width:100,
-      borderRadius:50,
+      height:120,
+      width:120,
+      borderRadius:60,
       backgroundColor:'#337AE2',
-      color:"#fff",
-      textAlign:'center',
+      marginBottom:60,
+      display:'flex',
+      justifyContent:'center',
     },
     joinBtn:{
-      height:100,
-      width:100,
-      borderRadius:50,
+      display:'flex',
+      height:120,
+      width:120,
+      borderRadius:60,
       borderWidth:5,
       backgroundColor:"transparent",
       borderColor:'#337AE2',
-      color:"#fff",
-      textAlign:'center',
+      justifyContent:'center',
+    },
+    btnText:{
+      color:"white",
+      textAlign:"center",
+      fontSize:20,
+      fontWeight:"bold",
     }
 });
